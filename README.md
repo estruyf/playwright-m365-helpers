@@ -22,7 +22,7 @@ const AuthFile = "playwright/.auth/user.json";
 
 setup("authenticate", async ({ page }) => {
   
-  await startMicrosoftLogin(
+  await login(
     page,
     process.env.M365_PAGE_URL,
     process.env.M365_USERNAME,
