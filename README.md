@@ -27,12 +27,16 @@ setup("authenticate", async ({ page }) => {
     process.env.M365_PAGE_URL,
     process.env.M365_USERNAME,
     process.env.M365_PASSWORD,
-    process.env.M365_OTP_SECRET
+    process.env.M365_OTP_SECRET // Optional
   );
 
   await page.context().storageState({ path: AuthFile });
 });
 ```
+
+> ![NOTE]
+> In case of using Time-based One-Time Password (TOTP) for two-factor authentication, you can provide the secret key as the fourth parameter.
+> To know more about signing in with TOTP, check the [automating Microsoft 365 login with multi-factor authentication in Playwright tests](https://www.eliostruyf.com/automating-microsoft-365-login-mfa-playwright-tests/) article.
 
 Create a new project in the `playwright.config.ts` file with the following code:
 
