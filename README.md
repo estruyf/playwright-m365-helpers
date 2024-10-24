@@ -34,7 +34,7 @@ setup("authenticate", async ({ page }) => {
 });
 ```
 
-> ![NOTE]
+> [!NOTE]
 > In case of using Time-based One-Time Password (TOTP) for two-factor authentication, you can provide the secret key as the fourth parameter.
 > To know more about signing in with TOTP, check the [automating Microsoft 365 login with multi-factor authentication in Playwright tests](https://www.eliostruyf.com/automating-microsoft-365-login-mfa-playwright-tests/) article.
 
