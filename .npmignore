@@ -1,3 +1,7 @@
 .github
 node_modules
 scripts
+src
+
+.gitignore
+tsconfig.json

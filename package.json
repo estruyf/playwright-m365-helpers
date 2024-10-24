@@ -2,8 +2,11 @@
   "name": "playwright-m365-helpers",
   "version": "0.0.1",
   "description": "A set of helpers for creating E2E tests for your Microsoft 365 projects using Playwright",
-  "main": "src/index.ts",
-  "scripts": {},
+  "main": "dist/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
   "author": "Elio Struyf <elio@struyfconsulting.be>",
   "keywords": [
     "playwright",
@@ -25,7 +28,9 @@
     "url": "git+ssh://git@github.com/estruyf/playwright-m365-helpers.git"
   },
   "devDependencies": {
-    "@playwright/test": "^1.48.1"
+    "@playwright/test": "^1.48.1",
+    "@tsconfig/recommended": "^1.0.7",
+    "typescript": "^5.6.3"
   },
   "dependencies": {
     "otpauth": "^9.3.4"
