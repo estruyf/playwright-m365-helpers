@@ -2,7 +2,7 @@
   "name": "playwright-m365-helpers",
   "version": "0.0.1",
   "description": "A set of helpers for creating E2E tests for your Microsoft 365 projects using Playwright",
-  "main": "dist/index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w"
