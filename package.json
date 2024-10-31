@@ -36,6 +36,6 @@
     "otpauth": "^9.3.4"
   },
   "peerDependencies": {
-    "@playwright/test": "^1.48.1"
+    "@playwright/test": "*"
   }
 }
