@@ -61,9 +61,11 @@ export default defineConfig({
 });
 ```
 
-### Power Platform
+### Power Platform helpers
 
 There are various helpers for Power Platform projects:
+
+#### Locators
 
 - `getAppFrame` - Get the iframe of the Power Platform app
 
@@ -84,6 +86,18 @@ There are various helpers for Power Platform projects:
     const appFrame = await getAppFrame(page);
     const control = getControlByName(appFrame, "controlName");
     await expect(control).toBeVisible();
+  });
+  ```
+
+- `getControlPart` - Get the control by its part name
+  
+  ```typescript
+  import { getAppFrame, getControlPart } from 'playwright-m365-helpers';
+
+  test("Check if control part can be retrieved", async () => {
+    const appFrame = await getAppFrame(page);
+    const galleryItems = getControlPart(appFrame, "gallery-item");
+    await expect(galleryItems).toHaveCount(2);
   });
   ```
 
@@ -125,6 +139,19 @@ There are various helpers for Power Platform projects:
   });
   ```
 
+- `getGalleryItems` - Get the gallery items
+  
+  ```typescript
+  import { getAppFrame, getControlPart } from 'playwright-m365-helpers';
+
+  test("Check if we can retrieve the gallery items", async () => {
+    const appFrame = await getAppFrame(page);
+    const gallery = getControlByName(appFrame, "galleryName");
+    const galleryItems = getGalleryItems(gallery);
+    await expect(galleryItems).toHaveCount(2);
+  });
+  ```
+
 - `getInput` - Get the input by name
 
   ```typescript
@@ -135,6 +162,18 @@ There are various helpers for Power Platform projects:
     const input = getInput(appFrame, "inputName");
     await expect(input).toBeVisible();
     await input.fill("Hello World");
+  });
+  ```
+
+- `getLabel` - Get the label by name
+
+  ```typescript
+  import { getAppFrame, getLabel } from 'playwright-m365-helpers';
+
+  test("Check if label is loaded", async () => {
+    const appFrame = await getAppFrame(page);
+    const input = getLabel(appFrame, "labelName");
+    await expect(input).toHaveText(/Label text/);
   });
   ```
 
@@ -189,6 +228,52 @@ There are various helpers for Power Platform projects:
     await expect(toggle).toBeVisible();
     await toggle.click();
     await expect(toggle).toHaveAttribute("aria-checked", "true");
+  });
+  ```
+
+#### API helpers
+
+In order to use the API helpers, you need to know the Power Platform connector ID. You can find this ID if you are going to your Power Platform connections page, and click on the connector you want to use. The connector ID is part of the URL.
+
+`https://make.powerapps.com/environments/<environment>/connections/<connector ID>/details`
+
+Example:
+
+In the following URL:
+
+`https://make.powerapps.com/environments/12345678-1234-1234-1234-123456789012/connections/shared_sharepointonline/4aee3a63496d4e3f998c3910ba712bf2/details`
+
+The connector ID is `shared_sharepointonline/4aee3a63496d4e3f998c3910ba712bf2`.
+
+The following API helpers are available:
+
+- `mockConnector` - Mock the Power Platform connector
+
+  ```typescript
+  import { mockConnector } from 'playwright-m365-helpers';
+
+  test("Mock the connector", async () => {
+    await mockConnector(page, "connectorId", "connectorResponse");
+  });
+  ```
+
+- `waitForConnectorRequest` - Wait for the connector request to be made
+
+  ```typescript
+  import { waitForConnectorRequest } from 'playwright-m365-helpers';
+
+  test("Wait for the connector request", async () => {
+    await waitForConnectorRequest(page, "connectorId");
+  });
+  ```
+
+- `waitForConnectorResponse` - Wait for the connector response to be received
+
+  ```typescript
+  import { waitForConnectorResponse } from 'playwright-m365-helpers';
+
+  test("Wait for the connector response", async () => {
+    await waitForConnectorResponse(page, "connectorId");
   });
   ```
 
