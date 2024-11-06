@@ -6,6 +6,7 @@ import { Logger } from "../utils/Logger";
  *
  * @param page - The Playwright Page object to interact with.
  * @param connectorId - The ID of the connector to wait for a response from.
+ * @param method - The HTTP method to wait for. By default, it will wait for a GET request.
  * @param options - Optional settings for waiting for the response.
  * @param options.logging - Whether to log the waiting process.
  * @param options.timeout - The maximum time to wait for the response, in milliseconds.
@@ -14,6 +15,7 @@ import { Logger } from "../utils/Logger";
 export const waitForConnectorRequest = async (
   page: Page,
   connectorId: string,
+  method: string = "GET",
   options?: {
     logging?: boolean;
     timeout?: number;
@@ -37,11 +39,13 @@ export const waitForConnectorRequest = async (
 
     const headers = request.headers();
     const requestUrl = headers["x-ms-request-url"];
+    const requestMethod = headers["x-ms-request-method"];
 
     if (logging) {
       Logger(
         `waitForConnectorRequest: Checking connector ID in request URL...`,
-        requestUrl
+        requestUrl,
+        requestMethod
       );
     }
 
@@ -49,8 +53,14 @@ export const waitForConnectorRequest = async (
       return false;
     }
 
+    if (!requestMethod || requestMethod !== method) {
+      return false;
+    }
+
     if (logging) {
-      Logger(`waitForConnectorRequest: Request to ${connectorId} found!`);
+      Logger(
+        `waitForConnectorRequest: Request to  (${requestMethod}) ${connectorId} found!`
+      );
     }
 
     return true;

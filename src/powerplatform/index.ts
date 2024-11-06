@@ -8,6 +8,7 @@ export * from "./getInput";
 export * from "./getLabel";
 export * from "./getRadio";
 export * from "./getRadioOptions";
+export * from "./getScreen";
 export * from "./getToggle";
 export * from "./mockConnector";
 export * from "./selectDropdownOption";

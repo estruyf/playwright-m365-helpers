@@ -159,9 +159,15 @@ There are various helpers for Power Platform projects:
 
   test("Check if input is loaded", async () => {
     const appFrame = await getAppFrame(page);
+    // Single line input
     const input = getInput(appFrame, "inputName");
     await expect(input).toBeVisible();
     await input.fill("Hello World");
+
+    // Multi-line input
+    const multiLineInput = getInput(appFrame, "multiLineInputName", true);
+    await expect(multiLineInput).toBeVisible();
+    await multiLineInput.fill("Hello World");
   });
   ```
 
@@ -216,6 +222,18 @@ There are various helpers for Power Platform projects:
   });
   ```
 
+- `getScreen` - Get the screen by name
+
+  ```typescript
+  import { getAppFrame, getScreen } from 'playwright-m365-helpers';
+
+  test("Check if screen is loaded", async () => {
+    const appFrame = await getAppFrame(page);
+    const screen = getScreen(appFrame, "screenName");
+    await expect(screen).toBeVisible();
+  });
+  ```
+
 - `getToggle` - Get the toggle by name
 
   ```typescript
@@ -253,7 +271,11 @@ The following API helpers are available:
   import { mockConnector } from 'playwright-m365-helpers';
 
   test("Mock the connector", async () => {
+    // Mock the connector with a GET request
     await mockConnector(page, "connectorId", "connectorResponse");
+
+    // Mock the connector its POST event + status code
+    await mockConnector(page, "connectorId", "connectorResponse", "POST", 201;
   });
   ```
 
@@ -263,7 +285,11 @@ The following API helpers are available:
   import { waitForConnectorRequest } from 'playwright-m365-helpers';
 
   test("Wait for the connector request", async () => {
+    // Wait for the connector GET request
     await waitForConnectorRequest(page, "connectorId");
+
+    // Wait for the connector POST request
+    await waitForConnectorRequest(page, "connectorId", "POST");
   });
   ```
 
@@ -273,7 +299,11 @@ The following API helpers are available:
   import { waitForConnectorResponse } from 'playwright-m365-helpers';
 
   test("Wait for the connector response", async () => {
+    // Wait for the connector GET response
     await waitForConnectorResponse(page, "connectorId");
+
+    // Wait for the connector POST response
+    await waitForConnectorResponse(page, "connectorId", "POST");
   });
   ```
 

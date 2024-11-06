@@ -3,7 +3,10 @@ import { getControlByName } from "./getControlByName";
 
 export const getInput = (
   frame: FrameLocator | Locator,
-  controlName: string
+  controlName: string,
+  multiline: boolean = false
 ) => {
-  return getControlByName(frame, controlName).locator(`input`);
+  return getControlByName(frame, controlName).locator(
+    !multiline ? "input" : "textarea"
+  );
 };

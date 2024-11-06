@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3] - 2024-11-06
+
+- Added `getScreen` locator function in the Power Platform
+- Added multiline option to the `getInput` locator function
+- Added method option to the `mockConnector`, `waitForConnectorRequest`, and `waitForConnectorResponse` functions
+- Added status option to the `mockConnector` function
+
 ## [0.0.2] - 2024-10-31
 
 - Added the `getControlPart` locator function in the Power Platform
