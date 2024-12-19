@@ -8,7 +8,7 @@ export const login = async (
   password?: string,
   otpSecret?: string,
   staySignedInBtnValue: string = "Yes"
-) => {
+): Promise<void> => {
   if (!pageUrl) {
     throw new Error("Page URL is missing");
   }
@@ -58,9 +58,10 @@ export const login = async (
   }
 
   const staySignedInBtn = page.locator(`input[type=submit][value=${staySignedInBtnValue}]`);
+  await staySignedInBtn.waitFor({ timeout: 500 });
   if (await staySignedInBtn.count() > 0) {
     await staySignedInBtn.click();
   }
-  
+
   await page.waitForURL(pageUrl || "");
 };
