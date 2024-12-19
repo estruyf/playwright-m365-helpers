@@ -57,8 +57,8 @@ export const login = async (
     await page.locator("input[type=submit]").click();
   }
 
+  await page.waitForTimeout(500);
   const staySignedInBtn = page.locator(`input[type=submit][value=${staySignedInBtnValue}]`);
-  await staySignedInBtn.waitFor({ timeout: 500 });
   if (await staySignedInBtn.count() > 0) {
     await staySignedInBtn.click();
   }
