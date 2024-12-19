@@ -57,8 +57,10 @@ export const login = async (
     await page.locator("input[type=submit]").click();
   }
 
-  await page
-    .locator(`input[type=submit][value=${staySignedInBtnValue}]`)
-    .click();
+  const staySignedInBtn = page.locator(`input[type=submit][value=${staySignedInBtnValue}]`);
+  if (await staySignedInBtn.count() > 0) {
+    await staySignedInBtn.click();
+  }
+  
   await page.waitForURL(pageUrl || "");
 };

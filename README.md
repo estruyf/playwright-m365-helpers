@@ -309,4 +309,16 @@ The following API helpers are available:
 
 <br />
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Festruyf%2Fplaywright-m365-helpers&countColor=%23263759)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2Festruyf%2Fplaywright-m365-helpers)
+<p align="center">
+  <a href="https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2Festruyf%2Fplaywright-m365-helpers">
+    <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Festruyf%2Fplaywright-m365-helpers&countColor=%23263759" height="25px" alt="playwright-m365-helpers visitors" />
+  </a>
+</p>
+
+<br />
+
+<p align="center">
+  <a href="https://struyfconsulting.com" title="Hire Elio Struyf via Struyf Consulting" target="_blank">
+    <img src="./assets/struyf-consulting.webp" height="25px" alt="Struyf Consulting Logo" />
+  </a>
+</p>

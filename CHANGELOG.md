@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.4] - 2024-12-19
+
+- [#2](https://github.com/estruyf/playwright-m365-helpers/issues/2): Make the stay signed in optional in the `login` function
+
 ## [0.0.3] - 2024-11-06
 
 - Added `getScreen` locator function in the Power Platform
