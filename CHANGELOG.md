@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.6] - 2025-05-24
+
+- [#3](https://github.com/estruyf/playwright-m365-helpers/pull/3): Stay signed in button fix provided by [Heimo](https://github.com/Heimo001)
+
 ## [0.0.5] - 2024-12-19
 
 - [#2](https://github.com/estruyf/playwright-m365-helpers/issues/2): Implement another optional approach
