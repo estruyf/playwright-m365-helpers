@@ -32,13 +32,16 @@ export const login = async (
 
   if (otpSecret) {
     // Check if there is an Microsft Authenticator app prompt
-    const otherWayLink = page.locator("a#signInAnotherWay");
-    await otherWayLink.waitFor({ timeout: 2000 });
-    if (await otherWayLink.isVisible()) {
-      await otherWayLink.click();
+    try {
+      const otherWayLink = page.locator("a#signInAnotherWay");
+      if (await otherWayLink.isVisible({ timeout: 2000 })) {
+        await otherWayLink.click();
 
-      const otpLink = page.locator(`div[data-value="PhoneAppOTP"]`);
-      await otpLink.click();
+        const otpLink = page.locator(`div[data-value="PhoneAppOTP"]`);
+        await otpLink.click();
+      }
+    } catch (error) {
+      // The "Sign in another way" link is not present, continue with OTP input
     }
 
     // Fill in the OTP code
@@ -58,8 +61,10 @@ export const login = async (
   }
 
   await page.waitForTimeout(500);
-  const staySignedInBtn = page.locator(`input[type=submit][value=${staySignedInBtnValue}]`);
-  if (await staySignedInBtn.count() > 0) {
+  const staySignedInBtn = page.locator(
+    `input[type=submit][value=${staySignedInBtnValue}]`
+  );
+  if ((await staySignedInBtn.count()) > 0) {
     await staySignedInBtn.click();
   }
 
