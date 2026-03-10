@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.8] - 2026-03-10
+
+- [#4](https://github.com/estruyf/playwright-m365-helpers/issues/4): Fix the sign in another way link for OTP authentication
+
 ## [0.0.7] - 2025-10-27
 
 - Fix the sign in another way link

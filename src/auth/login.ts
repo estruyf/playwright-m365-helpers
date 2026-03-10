@@ -7,7 +7,7 @@ export const login = async (
   userName?: string,
   password?: string,
   otpSecret?: string,
-  staySignedInBtnValue: string = "Yes"
+  staySignedInBtnValue: string = "Yes",
 ): Promise<void> => {
   if (!pageUrl) {
     throw new Error("Page URL is missing");
@@ -31,15 +31,14 @@ export const login = async (
   await page.locator("input[type=submit]").click();
 
   if (otpSecret) {
-    // Check if there is an Microsft Authenticator app prompt
+    // Check if there is a Microsoft Authenticator app prompt
     try {
       const otherWayLink = page.locator("a#signInAnotherWay");
-      if (await otherWayLink.isVisible({ timeout: 2000 })) {
-        await otherWayLink.click();
+      await otherWayLink.waitFor({ state: "visible", timeout: 2000 });
+      await otherWayLink.click();
 
-        const otpLink = page.locator(`div[data-value="PhoneAppOTP"]`);
-        await otpLink.click();
-      }
+      const otpLink = page.locator(`div[data-value="PhoneAppOTP"]`);
+      await otpLink.click();
     } catch (error) {
       // The "Sign in another way" link is not present, continue with OTP input
     }
@@ -62,7 +61,7 @@ export const login = async (
 
   await page.waitForTimeout(500);
   const staySignedInBtn = page.locator(
-    `input[type=submit][value=${staySignedInBtnValue}]`
+    `input[type=submit][value=${staySignedInBtnValue}]`,
   );
   await page.waitForTimeout(500);
   if ((await staySignedInBtn.count()) > 0) {
